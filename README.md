@@ -25,8 +25,7 @@ TeacherAide lets teachers upload PDF reading materials or images, then uses AI t
 
 **OpenAI**
 - gpt-5.4 _(default for text questions)_
-- gpt-5.2, gpt-5.1, gpt-5.4-mini
-- o4-mini, o3-mini, o1, o1-mini _(reasoning models)_
+- gpt-5.4-mini
 
 **Anthropic (Claude)**
 - claude-opus-4-6 _(default for image questions)_
