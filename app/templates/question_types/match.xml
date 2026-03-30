@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" 
+    identifier="{identifier}" 
+    title="{title}" 
+    adaptive="false" 
+    timeDependent="false">
+    <responseDeclaration identifier="RESPONSE" cardinality="multiple" baseType="directedPair">
+        <correctResponse>
+            {correct_pairs}
+        </correctResponse>
+    </responseDeclaration>
+    <itemBody>
+        <matchInteraction responseIdentifier="RESPONSE" shuffle="true" maxAssociations="0">
+            <prompt>{prompt}</prompt>
+            <simpleMatchSet>
+                {source_choices}
+            </simpleMatchSet>
+            <simpleMatchSet>
+                {target_choices}
+            </simpleMatchSet>
+        </matchInteraction>
+    </itemBody>
+</assessmentItem>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentTest xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 
+    http://www.imsglobal.org/xsd/imsqti_v2p2p1.xsd"
+    identifier="{test_id}" 
+    title="{test_title}">
+    <testPart identifier="TestPart1" navigationMode="linear" submissionMode="individual">
+        <assessmentSection identifier="Section1" title="All Questions">
+            {item_refs}
+        </assessmentSection>
+    </testPart>
+</assessmentTest>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="{manifest_id}" 
+    xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" 
+    xmlns:imsmd="http://www.imsglobal.org/xsd/imsmd_v1p2">
+    <organizations/>
+    <resources>
+        <resource identifier="test1" type="imsqti_test_xmlv2p2" href="assessmentTest.xml">
+            <file href="assessmentTest.xml"/>
+            {dependencies}
+        </resource>
+        {resources}
+    </resources>
+</manifest>

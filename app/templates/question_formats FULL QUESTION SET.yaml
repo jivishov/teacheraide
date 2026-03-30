@@ -1,0 +1,182 @@
+# Standardized question formats with consistent field names and structures
+question_formats:
+  mcq:
+    type: mcq
+    identifier: MCQ1
+    title: "Sample Multiple Choice"
+    adaptive: false
+    timeDependent: false
+    prompt: "Sample question text?"
+    choices:
+      - identifier: "A"
+        text: "First choice"
+        correct: true
+      - identifier: "B"
+        text: "Second choice"
+        correct: false
+    shuffle: true
+    maxChoices: 1
+
+  mrq:
+    type: mrq
+    identifier: MRQ1
+    title: "Sample Multiple Response"
+    adaptive: false
+    timeDependent: false
+    prompt: "Select all that apply:"
+    choices:
+      - identifier: "A"
+        text: "First choice"
+        correct: true
+      - identifier: "B"
+        text: "Second choice"
+        correct: true
+      - identifier: "C"
+        text: "Third choice"
+        correct: false
+    shuffle: true
+    maxChoices: 0  # 0 means unlimited
+
+  tf:
+    type: tf
+    identifier: TF1
+    title: "Sample True/False"
+    adaptive: false
+    timeDependent: false
+    prompt: "Paris is the capital city of France."
+    correct: true  # Changed from correctResponse to simple boolean
+    shuffle: false
+
+  fib:
+    type: fib
+    identifier: FIB1
+    title: "Sample Fill in Blank"
+    adaptive: false
+    timeDependent: false
+    prompt: "The name of the capital city of France is _ ."
+    correctAnswers:  # Standardized to correctAnswers for all text entry
+      - ["Paris"]   # Array of arrays for multiple accepted answers
+    expectedLength: 20
+
+  numeric:
+    type: numeric
+    identifier: NUM1
+    title: "Sample Numeric"
+    adaptive: false
+    timeDependent: false
+    prompt: "Calculate 6x7= "
+    correctAnswers:  # Changed to match fib format
+      - ["42"]      # Can include multiple accepted forms
+    expectedLength: 4
+    tolerance: 0.01  # Optional tolerance for numeric comparison
+
+  match:
+    type: match
+    identifier: MATCH1
+    title: "Sample Matching"
+    adaptive: false
+    timeDependent: false
+    prompt: "Match the following:"
+    matchSets:
+      source:
+        - identifier: "A1"
+          text: "First source"
+          matchMax: 1
+        - identifier: "A2"
+          text: "Second source"
+          matchMax: 1
+      target:
+        - identifier: "B1"
+          text: "First target"
+          matchMax: 1
+        - identifier: "B2"
+          text: "Second target"
+          matchMax: 1
+    correctPairs:
+      - ["A1", "B1"]
+      - ["A2", "B2"]
+    shuffle: true
+    maxAssociations: 0
+
+  order:
+    type: order
+    identifier: ORDER1
+    title: "Sample Ordering"
+    adaptive: false
+    timeDependent: false
+    prompt: "Arrange in correct order:"
+    choices:
+      - identifier: "A"
+        text: "First item"
+      - identifier: "B"
+        text: "Second item"
+      - identifier: "C"
+        text: "Third item"
+    correctSequence: ["A", "B", "C"]
+    shuffle: true
+
+  essay:
+    type: essay
+    identifier: ESSAY1
+    title: "Sample Essay"
+    adaptive: false
+    timeDependent: false
+    prompt: "Write about:"
+    expectedLines: 5
+    responseFormat: "plain"  # Added format specification
+
+  upload:
+    type: upload
+    identifier: UPLOAD1
+    title: "Sample File Upload"
+    adaptive: false
+    timeDependent: false
+    prompt: "Upload your file:"
+    maxSize: 1048576  # 1MB in bytes
+    allowedTypes: ["pdf", "doc", "docx"]  # Added file type restrictions
+
+  label_image:
+    type: label_image
+    identifier: LABEL1
+    title: "Sample Image Labeling"
+    adaptive: false
+    timeDependent: false
+    prompt: "Label the image:"
+    image:  # Added structured image info
+      source: "path/to/image.png"
+      width: 400
+      height: 300
+      type: "image/png"
+    labels:
+      - identifier: "label1"
+        text: "First label"
+      - identifier: "label2"
+        text: "Second label"
+    targets:
+      - identifier: "target1"
+        text: "First target"
+        x: 100
+        y: 100
+      - identifier: "target2"
+        text: "Second target"
+        x: 200
+        y: 200
+    correctPairs:
+      - ["label1", "target1"]
+      - ["label2", "target2"]
+
+  highlight_text:
+    type: highlight_text
+    identifier: HIGHLIGHT1
+    title: "Sample Text Highlighting"
+    adaptive: false
+    timeDependent: false
+    prompt: "Highlight the correct parts:"
+    text:
+      - identifier: "text1"
+        content: "First highlightable section"
+        correct: true
+      - identifier: "text2"
+        content: "Second highlightable section"
+        correct: false
+    maxSelections: 0  # Added maximum selections (0 = unlimited)

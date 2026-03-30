@@ -1,0 +1,115 @@
+# Standardized question formats with consistent field names and structures
+question_formats:
+  mcq:
+    type: mcq
+    identifier: MCQ1
+    title: "Sample Multiple Choice"
+    adaptive: false
+    timeDependent: false
+    prompt: "Sample question text?"
+    choices: # 4 choices and 1 correct answer   
+      - identifier: "A"
+        text: "First choice"
+        correct: true
+      - identifier: "B"
+        text: "Second choice"
+        correct: false
+    shuffle: true
+    maxChoices: 1
+
+  mrq:
+    type: mrq
+    identifier: MRQ1
+    title: "Sample Multiple Response"
+    adaptive: false
+    timeDependent: false
+    prompt: "Select all that apply:"
+    choices:
+      - identifier: "A"
+        text: "First choice"
+        correct: true
+      - identifier: "B"
+        text: "Second choice"
+        correct: true
+      - identifier: "C"
+        text: "Third choice"
+        correct: false
+    shuffle: true
+    maxChoices: 0  # 0 means unlimited
+
+  tf:
+    type: tf
+    identifier: TF1
+    title: "Sample True/False"
+    adaptive: false
+    timeDependent: false
+    prompt: "Paris is the capital city of France."
+    correct: true  # Changed from correctResponse to simple boolean
+    shuffle: false
+
+  fib:
+    type: fib
+    identifier: FIB1
+    title: "Sample fill-in-the-blank(s)"
+    adaptive: false
+    timeDependent: false
+    prompt: "Capital of France is _ , capital of Azerbaijan _ ."
+    correctAnswers:
+      -- Paris
+      -- Baku
+    expectedLength: 20
+
+  match:
+    type: match
+    identifier: MATCH1
+    title: "Sample Matching"
+    adaptive: false
+    timeDependent: false
+    prompt: "Match the following:"
+    matchSets:
+      source:
+        - identifier: "A1"
+          text: "First source"
+          matchMax: 1
+        - identifier: "A2"
+          text: "Second source"
+          matchMax: 1
+      target:
+        - identifier: "B1"
+          text: "First target"
+          matchMax: 1
+        - identifier: "B2"
+          text: "Second target"
+          matchMax: 1
+    correctPairs:
+      - ["A1", "B1"]
+      - ["A2", "B2"]
+    shuffle: true
+    maxAssociations: 0
+
+  order:
+    type: order
+    identifier: ORDER1
+    title: "Sample Ordering"
+    adaptive: false
+    timeDependent: false
+    prompt: "Arrange in correct order:"
+    choices:
+      - identifier: "A"
+        text: "First item"
+      - identifier: "B"
+        text: "Second item"
+      - identifier: "C"
+        text: "Third item"
+    correctSequence: ["A", "B", "C"]
+    shuffle: true
+
+  essay:
+    type: essay
+    identifier: ESSAY1
+    title: "Sample Essay"
+    adaptive: false
+    timeDependent: false
+    prompt: "Write about:"
+    expectedLines: 5
+    responseFormat: "plain"  # Added format specification

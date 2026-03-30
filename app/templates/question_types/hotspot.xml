@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" 
+    identifier="{identifier}" 
+    title="{title}" 
+    adaptive="false" 
+    timeDependent="false">
+    <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+        <correctResponse>
+            <value>{correct_hotspot}</value>
+        </correctResponse>
+    </responseDeclaration>
+    <itemBody>
+        <hotspotInteraction responseIdentifier="RESPONSE" maxChoices="1">
+            <prompt>{prompt}</prompt>
+            <object type="image/png" data="{image_source}" width="{width}" height="{height}"/>
+            {hotspot_choices}
+        </hotspotInteraction>
+    </itemBody>
+</assessmentItem>

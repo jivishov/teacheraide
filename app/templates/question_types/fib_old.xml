@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" 
+    identifier="{identifier}" 
+    title="{title}" 
+    adaptive="false" 
+    timeDependent="false">
+    <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="string">
+        <correctResponse>
+            {correct_answers}
+        </correctResponse>
+    </responseDeclaration>
+    <itemBody>
+        <prompt>{prompt}</prompt>
+        <textEntryInteraction responseIdentifier="RESPONSE" expectedLength="20"/>
+    </itemBody>
+</assessmentItem>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" 
+    identifier="{identifier}" 
+    title="{title}" 
+    adaptive="false" 
+    timeDependent="false">
+    <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="string">
+        <correctResponse>
+            {correct_answers}
+        </correctResponse>
+    </responseDeclaration>
+    <itemBody>
+        <p>{text_before}<textEntryInteraction responseIdentifier="RESPONSE" expectedLength="20"/>{text_after}</p>
+    </itemBody>
+</assessmentItem>

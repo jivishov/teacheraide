@@ -1,0 +1,276 @@
+# Standardized metadata with enhanced validation rules
+# Common settings for all question types
+common_settings:
+  namespace: "http://www.imsglobal.org/xsd/imsqti_v2p2"
+  schema_location: "http://www.imsglobal.org/xsd/imsqti_v2p2.xsd"
+  required_attributes:
+    - identifier
+    - title
+    - adaptive
+    - timeDependent
+    - prompt
+  attribute_types:
+    identifier: string
+    title: string
+    adaptive: boolean
+    timeDependent: boolean
+    prompt: string
+  media_settings:
+    allowed_formats: ['image/jpeg', 'image/png', 'image/gif']
+    max_file_size: 5242880  # 5MB in bytes
+    min_dimensions: [100, 100]
+    max_dimensions: [2000, 2000]
+    allowed_dpi: [72, 300]
+
+# Question type specific metadata
+question_types:
+  mcq:
+    allowed_interactions: ['choiceInteraction']
+    required_elements:
+      - prompt
+      - choices
+    optional_elements:
+      - feedback
+      - outcomeDeclaration
+      - shuffle
+      - maxChoices
+    validation_rules:
+      min_choices: 4
+      max_choices: 1
+      shuffle: true
+      base_type: identifier
+      cardinality: single
+      choices_format:
+        required_fields: ['identifier', 'text', 'correct']
+        field_types:
+          identifier: string
+          text: string
+          correct: boolean
+
+  mrq:
+    allowed_interactions: ['choiceInteraction']
+    required_elements:
+      - prompt
+      - choices
+    optional_elements:
+      - feedback
+      - outcomeDeclaration
+      - shuffle
+      - maxChoices
+    validation_rules:
+      min_choices: 4
+      max_choices: 0  # 0 means unlimited
+      shuffle: true
+      base_type: identifier
+      cardinality: multiple
+      choices_format:
+        required_fields: ['identifier', 'text', 'correct']
+        field_types:
+          identifier: string
+          text: string
+          correct: boolean
+
+  tf:
+    allowed_interactions: ['choiceInteraction']
+    required_elements:
+      - prompt
+      - correct
+    optional_elements:
+      - feedback
+      - outcomeDeclaration
+    validation_rules:
+      shuffle: false
+      base_type: boolean
+      cardinality: single
+      field_types:
+        correct: boolean
+
+  fib:
+    allowed_interactions: ['textEntryInteraction']
+    required_elements:
+      - prompt
+      - correctAnswers
+      - expectedLength
+    optional_elements:
+      - feedback
+      - outcomeDeclaration
+    validation_rules:
+      base_type: string
+      cardinality: single
+      field_types:
+        correctAnswers: array
+        expectedLength: integer
+      expectedLength:
+        min: 1
+        max: 100
+
+  numeric:
+    allowed_interactions: ['textEntryInteraction']
+    required_elements:
+      - prompt
+      - correctAnswers
+      - expectedLength
+    optional_elements:
+      - feedback
+      - outcomeDeclaration
+      - tolerance
+    validation_rules:
+      base_type: float
+      cardinality: single
+      field_types:
+        correctAnswers: array
+        expectedLength: integer
+        tolerance: float
+      expectedLength:
+        min: 1
+        max: 20
+      tolerance:
+        min: 0
+        max: 1000
+
+  match:
+    allowed_interactions: ['matchInteraction']
+    required_elements:
+      - prompt
+      - matchSets
+      - correctPairs
+    optional_elements:
+      - feedback
+      - outcomeDeclaration
+      - shuffle
+      - maxAssociations
+    validation_rules:
+      min_pairs: 2
+      max_associations: 0
+      base_type: directedPair
+      cardinality: multiple
+      matchSets_format:
+        required_fields: ['source', 'target']
+        source_target_format:
+          required_fields: ['identifier', 'text']
+          optional_fields: ['matchMax']
+          field_types:
+            identifier: string
+            text: string
+            matchMax: integer
+
+  order:
+    allowed_interactions: ['orderInteraction']
+    required_elements:
+      - prompt
+      - choices
+      - correctSequence
+    optional_elements:
+      - feedback
+      - outcomeDeclaration
+      - shuffle
+    validation_rules:
+      min_choices: 2
+      max_choices: 10
+      shuffle: true
+      base_type: identifier
+      cardinality: ordered
+      choices_format:
+        required_fields: ['identifier', 'text']
+        field_types:
+          identifier: string
+          text: string
+
+  essay:
+    allowed_interactions: ['extendedTextInteraction']
+    required_elements:
+      - prompt
+      - expectedLines
+    optional_elements:
+      - feedback
+      - outcomeDeclaration
+      - responseFormat
+    validation_rules:
+      base_type: string
+      cardinality: single
+      field_types:
+        expectedLines: integer
+        responseFormat: string
+      expectedLines:
+        min: 1
+        max: 100
+      responseFormat:
+        allowed: ['plain', 'html', 'preformatted']
+
+  upload:
+    allowed_interactions: ['uploadInteraction']
+    required_elements:
+      - prompt
+      - maxSize
+    optional_elements:
+      - feedback
+      - outcomeDeclaration
+      - allowedTypes
+    validation_rules:
+      base_type: file
+      cardinality: single
+      field_types:
+        maxSize: integer
+        allowedTypes: array
+      maxSize:
+        min: 1
+        max: 104857600  # 100MB max
+      allowedTypes:
+        allowed: ['pdf', 'doc', 'docx', 'txt', 'rtf']
+
+  label_image:
+    allowed_interactions: ['graphicGapMatchInteraction']
+    required_elements:
+      - prompt
+      - image
+      - labels
+      - targets
+      - correctPairs
+    optional_elements:
+      - feedback
+      - outcomeDeclaration
+    validation_rules:
+      min_pairs: 2
+      base_type: directedPair
+      cardinality: multiple
+      image_format:
+        required_fields: ['source', 'width', 'height', 'type']
+        field_types:
+          source: string
+          width: integer
+          height: integer
+          type: string
+      labels_format:
+        required_fields: ['identifier', 'text']
+        field_types:
+          identifier: string
+          text: string
+      targets_format:
+        required_fields: ['identifier', 'text', 'x', 'y']
+        field_types:
+          identifier: string
+          text: string
+          x: integer
+          y: integer
+
+  highlight_text:
+    allowed_interactions: ['selectTextInteraction']
+    required_elements:
+      - prompt
+      - text
+    optional_elements:
+      - feedback
+      - outcomeDeclaration
+      - maxSelections
+    validation_rules:
+      base_type: identifier
+      cardinality: multiple
+      text_format:
+        required_fields: ['identifier', 'content', 'correct']
+        field_types:
+          identifier: string
+          content: string
+          correct: boolean
+      maxSelections:
+        min: 0  # 0 means unlimited
+        max: 100

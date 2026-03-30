@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prompts>
+    <prompt type="mcq">
+        <![CDATA[
+Analyze this image thoroughly and generate a challenging, high-quality multiple-choice question suitable for high school or college-level STEM education.
+
+FIRST: Identify the most appropriate subject domain represented in the image:
+- PHYSICS: If the image shows forces, motion, energy, circuits, waves, etc.
+- MATHEMATICS: If the image shows geometric figures, graphs, equations, etc.
+- CHEMISTRY: If the image shows molecular structures, reactions, lab equipment, etc.
+- BIOLOGY: If the image shows organisms, cells, systems, ecological relationships, etc.
+
+SECOND: Understand and describe for yourself an image and create a high quality (HIGH SCHOOL LEVEL) question that requires critical thinking, application of concepts, or calculations - not just simple identification.
+DO NOT USE YOUR MEMORY FOR QUESTIONS - CREATE NEW ONES BASED ON THE IMAGE DETAILS!
+
+Format your response as YAML following this EXACT structure, START WITH "- type:":
+- type: mcq
+  identifier: "MCQ_IMG_{i}"
+  title: "{selected_subject} Concept Application"
+  adaptive: false
+  timeDependent: false
+  prompt: "Based on the diagram, calculate/determine/analyze..." (create a substantial question that requires understanding and application of key concepts)
+  question_text: "Examine the following diagram:"
+  question_image: "__IMAGE_HTML_PLACEHOLDER__"
+  choices:
+    - identifier: "A"
+      text: "A comprehensive, well-reasoned answer option"
+      correct: true
+    - identifier: "B"
+      text: "A plausible but incorrect answer that represents a common misconception"
+      correct: false
+    - identifier: "C"
+      text: "Another plausible but incorrect answer based on partial understanding"
+      correct: false
+    - identifier: "D"
+      text: "A clearly incorrect answer but still relevant to the context"
+      correct: false
+  shuffle: true
+  maxChoices: 1
+
+REQUIREMENTS FOR HIGH-QUALITY QUESTIONS:
+1. SOPHISTICATION: Create questions that test higher-order thinking skills (application, analysis, evaluation) rather than mere recall or identification
+2. SPECIFICITY: Reference specific elements from the image with precise values if shown. CONSIDER QUESTION/IMAGE SPECIFIC DETAIL/REQUIREMENT: {img_prompt}
+3. CHALLENGE: Include calculations, concept applications, or analytical reasoning
+4. BELIEVABILITY: All answer options should be plausible to someone with partial understanding
+5. DISCRIMINATION: Design answers that distinguish between different levels of understanding
+6. CONTEXT: Provide enough context in the prompt to fully understand what's being asked
+
+SUBJECT-SPECIFIC GUIDANCE:
+- PHYSICS: Include questions about forces, equilibrium, motion analysis, energy transformations, or circuit analysis.  FAVOR CALCULATIONS FIRST WITH CRITICAL THINKING!
+- MATHEMATICS: Focus on geometric proofs, algebraic relationships, trigonometric applications, or coordinate geometry analysis. FAVOR CALCULATIONS FIRST WITH CRITICAL THINKING AND APPLICATIONS!
+- CHEMISTRY: Create questions about molecular structures, reaction mechanisms, stoichiometry, or thermodynamic principles. FAVOR CALCULATIONS FIRST WITH CRITICAL THINKING, THEN APPLICATIONS AND MECHANISM OF PROCESS!
+- BIOLOGY: Emphasize system relationships, functional analysis, or process explanations rather than simple identification. FAVOR CRITICAL THINKING, MECHANISM OF PROCESS, APPLICATIONS!
+
+CRITICAL TECHNICAL REQUIREMENTS:
+1. identifier - Must be "MCQ_IMG_{i}"
+2. title - Include the subject area in the title
+3. adaptive - Must be 'false'
+4. timeDependent - Must be 'false'
+5. prompt - Must contain a substantial, challenging question
+6. choices - Exactly 4 choices with identifiers A, B, C, D
+7. shuffle - Set to 'true'
+8. maxChoices - Set to 1
+9. DO NOT USE LaTeX FOR FORMULAS. USE INLINE EQUATION FORMAT FOR MATH RELATED INFORMATION AND EASY TO MOVE TO RICH TEXT EDITOR OVERALL.
+
+Your response must be VALID YAML only with no additional text or explanations.
+        ]]>
+    </prompt>
+
+    <prompt type="tf">
+        <![CDATA[
+Generate a true/false question based on this image.
+
+Format your response as YAML following this structure, START WITH "- type:":
+- type: tf
+  identifier: "TF_IMG_{i}"
+  title: "Image-based True/False Question"
+  adaptive: false
+  timeDependent: false
+  question_text: "<Here should be comprehensive, meaningful and educational question text based on the attached image (if available) and related subject>"
+  question_image: "__IMAGE_HTML_PLACEHOLDER__" 
+  prompt: "Is this statement true or false: [statement about the image and question text]?"
+  correct: true (or false, depending on your statement)
+  shuffle: false
+
+IMPORTANT:
+1. Create a clear statement about the image that is either definitely true or false
+2. Ensure the statement is educational and relevant to what's visible
+
+
+Your response should be YAML only with no additional text or explanations.
+        ]]>
+    </prompt>
+
+    <prompt type="fib">
+        <![CDATA[
+Generate a fill-in-the-blank question based on this image.
+
+Format your response as YAML following this structure:
+- type: fib
+  identifier: "FIB_IMG_{i}"
+  title: "Image-based Fill in Blank Question"
+  adaptive: false
+  timeDependent: false
+  question_text: "<Here should be comprehensive, meaningful and educational question text based on the attached image (if available) and related subject>"
+  question_image: '<p><img src="media/{image.name}" alt="Description of the image" width="400"/></p>'
+  prompt: "The question is only for format purposes. Generate a nice, educational question to evaluate knowledge based on the question. Complete the following statement: The object shown in the image is a _."
+  correctAnswers:
+    - ["correct answer", "alternative correct answer"]
+  expectedLength: 10
+
+IMPORTANT:
+1. Create a statement with a blank (marked by _) about the image
+2. Provide all possible correct answers within the array
+3. Make sure the question is clear and educational
+4.DO NOT USE LaTeX FOR FORMULAS. USE INLINE EQUATION FORMAT FOR MATH RELATED INFORMATION AND EASY TO MOVE TO RICH TEXT EDITOR OVERALL.
+
+
+Your response should be YAML only with no additional text or explanations.
+        ]]>
+    </prompt>
+
+    <prompt type="match">
+        <![CDATA[
+Generate a matching question based on this image.
+
+Format your response as YAML following this structure, START WITH "- type:":
+- type: match
+  identifier: "MATCH_IMG_{i}"
+  title: "Image-based Matching Question"
+  adaptive: false
+  timeDependent: false
+  question_text: "Examine the following image:"
+  question_image: "__IMAGE_HTML_PLACEHOLDER__"
+  prompt: "Match the items on the left with their corresponding descriptions on the right."
+  matchSets:
+    source:
+      - identifier: "s1"
+        text: "First source item"
+        matchMax: 1
+      - identifier: "s2"
+        text: "Second source item"
+        matchMax: 1
+      - identifier: "s3"
+        text: "Third source item"
+        matchMax: 1
+    target:
+      - identifier: "t1"
+        text: "First target description"
+        matchMax: 1
+      - identifier: "t2"
+        text: "Second target description"
+        matchMax: 1
+      - identifier: "t3"
+        text: "Third target description"
+        matchMax: 1
+  correctPairs:
+    - ["s1", "t1"]
+    - ["s2", "t2"]
+    - ["s3", "t3"]
+  shuffle: true
+
+IMPORTANT:
+1. Create matching pairs based on elements visible in the image
+2. Make sure the matches are clear and educational
+3. Provide at least 3 source-target pairs
+
+Your response should be YAML only with no additional text or explanations.
+        ]]>
+    </prompt>
+</prompts>

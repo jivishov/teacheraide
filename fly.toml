@@ -1,0 +1,47 @@
+# fly.toml app configuration file generated for teacheraide on 2026-03-30T00:25:11-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'teacheraide'
+primary_region = 'dfw'
+
+[experimental]
+  enable_consul = true
+
+[build]
+
+[env]
+  BACKEND_URL = 'https://teacheraide.fly.dev'
+  ENV = 'prod'
+  REFLEX_BACKEND_HOST = '0.0.0.0'
+  REFLEX_ENV = 'prod'
+  REFLEX_FRONTEND_HOST = '0.0.0.0'
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = 'off'
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ['app']
+
+  [[http_service.checks]]
+    interval = '30s'
+    timeout = '10s'
+    grace_period = '1m0s'
+    method = 'GET'
+    path = '/ping'
+
+  [[http_service.checks]]
+    interval = '30s'
+    timeout = '10s'
+    grace_period = '1m0s'
+    method = 'GET'
+    path = '/'
+
+[[vm]]
+  memory = '2gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 2048

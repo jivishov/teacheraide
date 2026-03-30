@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" 
+    identifier="{identifier}" 
+    title="{title}" 
+    adaptive="false" 
+    timeDependent="false">
+    <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+        <correctResponse>
+            <value>{correct_answer}</value>
+        </correctResponse>
+    </responseDeclaration>
+    <itemBody>
+        <!-- Optional question text -->
+        {question_text}
+        
+        <!-- Optional question image -->
+        {question_image}
+        
+        <choiceInteraction responseIdentifier="RESPONSE" shuffle="true" maxChoices="1">
+            <prompt>{prompt}</prompt>
+            
+            <simpleChoice identifier="A">
+                {choice_a}
+                {choice_a_image}
+            </simpleChoice>
+            
+            <simpleChoice identifier="B">
+                {choice_b}
+                {choice_b_image}
+            </simpleChoice>
+            
+            <simpleChoice identifier="C">
+                {choice_c}
+                {choice_c_image}
+            </simpleChoice>
+            
+            <simpleChoice identifier="D">
+                {choice_d}
+                {choice_d_image}
+            </simpleChoice>
+        </choiceInteraction>
+    </itemBody>
+</assessmentItem>

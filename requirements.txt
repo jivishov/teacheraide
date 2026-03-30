@@ -1,0 +1,16 @@
+reflex
+openai
+PyPDF2
+PyYAML
+python-docx
+Pillow
+together
+anthropic
+google-genai
+python-dotenv
+xhtml2pdf
+markdown
+SQLAlchemy
+Authlib
+Jinja2
+python-multipart

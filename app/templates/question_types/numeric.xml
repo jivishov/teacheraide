@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" 
+    identifier="{identifier}" 
+    title="{title}" 
+    adaptive="false" 
+    timeDependent="false">
+    <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="float">
+        <correctResponse>
+            <value>{correct_answer}</value>
+        </correctResponse>
+    </responseDeclaration>
+    <itemBody>
+        <textEntryInteraction responseIdentifier="RESPONSE" expectedLength="{expected_length}">
+            <prompt>{prompt}</prompt>
+        </textEntryInteraction>
+    </itemBody>
+</assessmentItem>

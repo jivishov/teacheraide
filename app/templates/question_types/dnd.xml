@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" 
+    identifier="{identifier}" 
+    title="{title}" 
+    adaptive="false" 
+    timeDependent="false">
+    <responseDeclaration identifier="RESPONSE" cardinality="multiple" baseType="directedPair">
+        <correctResponse>
+            {correct_pairs}
+        </correctResponse>
+    </responseDeclaration>
+    <itemBody>
+        <graphicGapMatchInteraction responseIdentifier="RESPONSE">
+            <prompt>{prompt}</prompt>
+            <object type="image/png" data="{image_source}" width="{width}" height="{height}"/>
+            {draggable_items}
+            {drop_zones}
+        </graphicGapMatchInteraction>
+    </itemBody>
+</assessmentItem>
